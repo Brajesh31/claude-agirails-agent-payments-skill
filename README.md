@@ -1,40 +1,94 @@
-# Agirails Agent Payments
+# claude-agirails-agent-payments-skill
+
+A Claude Code skill for integrating AI agents with payment workflows using escrow, instant payment, and settlement patterns.
 
 ## Overview
 
-This repository contains a focused Claude skill for agirails agent payments. It provides structured guidance and practical resources for applying the workflow consistently in real projects.
+This skill guides agent payment onboarding and integration. It covers provider and requester roles, payment routing, escrow lifecycle, instant payment flows, pricing, disputes, and identity configuration.
 
-## What It Covers
+Payment integrations require careful handling of credentials, state transitions, and irreversible operations. Follow the onboarding workflow and verify each step before enabling live transactions.
 
-- Core concepts, terminology, and recommended practices.
-- A repeatable workflow for handling common tasks.
-- Practical guidance for producing clear, usable outputs.
-- Supporting scripts and resources included with the skill.
+## Main Capabilities
 
-## Repository Structure
+- Onboard an agent to the payment workflow.
+- Select provider or requester behavior.
+- Configure payment adapters and routing.
+- Work with escrow-based payment flows.
+- Work with instant payment flows where supported.
+- Understand settlement on the configured network.
+- Manage pricing and payment metadata.
+- Handle dispute and release workflows.
+- Configure agent identity and key management.
+- Verify setup before enabling real payments.
 
-```text
-SKILL.md
+## Payment Workflow Concepts
+
+### Provider
+
+An agent that offers a service and receives payment after the required conditions are satisfied.
+
+### Requester
+
+An agent that requests a service and initiates payment according to the configured flow.
+
+### Escrow
+
+A payment state that holds funds until the agreed release conditions are met. State transitions and release operations must be handled carefully.
+
+### Instant Payment
+
+A direct payment flow for cases where escrow is not required and the supported payment protocol allows immediate settlement.
+
+## Installation
+
+The skill can be installed in the Claude Code skills directory:
+
+```bash
+git clone https://github.com/Brajesh31/claude-agirails-agent-payments-skill.git ~/.claude/skills/agirails-agent-payments
 ```
 
-## Prerequisites
+The payment SDK and network configuration are separate runtime requirements. Review the current onboarding instructions in `SKILL.md` before installing packages or configuring keys.
 
-- A Claude-compatible environment that supports skills.
-- Familiarity with the domain and the project context.
-- Python 3 when using the included Python utilities.
+## Usage
 
-## Getting Started
+Invoke the skill when integrating an agent with the payment system:
 
-1. Review `SKILL.md` to understand the skill's purpose, scope, and operating instructions.
-2. Place the skill folder in the skills location supported by your Claude environment.
-3. Provide a task that matches the skill's intended use.
-4. Follow the workflow and adapt its outputs to your project requirements.
-5. Review generated work for accuracy, completeness, and suitability before using it.
+```text
+/agirails-agent-payments
+```
 
-## Usage Notes
+Provide the agent role, service or task description, pricing model, payment preference, settlement environment, and required identity configuration.
 
-Use this skill as a workflow aid, not as a substitute for product, security, legal, or technical review where those checks are required. Keep project-specific constraints and acceptance criteria explicit.
+## Onboarding Workflow
 
-## License
+1. Clarify the agent's role and payment use case.
+2. Select the appropriate payment flow.
+3. Define service pricing and settlement requirements.
+4. Configure identity and credentials securely.
+5. Generate integration code for the selected role.
+6. Review state transitions and error handling.
+7. Test using a safe non-production environment.
+8. Verify payment status and settlement behavior.
+9. Enable live use only after explicit confirmation.
+10. Monitor transactions and handle disputes through the documented process.
 
-Released under the MIT License. See [LICENSE](LICENSE).
+## Security Checklist
+
+- Private keys are never committed.
+- Credentials are stored securely.
+- Payment amounts and recipients are validated.
+- Escrow state transitions are checked.
+- Release operations require the correct conditions.
+- Duplicate requests are handled safely.
+- Network and chain configuration are verified.
+- Transaction status is independently checked.
+- Test and production environments are separated.
+
+## Repository Contents
+
+- `SKILL.md`: Main onboarding and payment integration instructions.
+- `README.md`: Payment concepts, workflow, and security checklist.
+
+## Important Note
+
+This skill provides technical integration guidance, not financial or legal advice. Payment operations can be irreversible. Verify network details, transaction state, and permissions before moving real funds.
