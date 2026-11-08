@@ -92,3 +92,20 @@ Provide the agent role, service or task description, pricing model, payment pref
 ## Important Note
 
 This skill provides technical integration guidance, not financial or legal advice. Payment operations can be irreversible. Verify network details, transaction state, and permissions before moving real funds.
+
+
+## Supporting Resources
+
+| File | Purpose |
+|---|---|
+| [Payment integration readiness checklist](resources/payment-integration-readiness-checklist.md) | Review roles, environment, secrets, transaction safety, testing, and go-live approval. |
+| [Transaction state review template](resources/transaction-state-review-template.md) | Record lifecycle evidence and review delivery/settlement without triggering payments. |
+| [Wallet and secret handling runbook](resources/wallet-and-secret-handling-runbook.md) | Handle key storage, access control, rotation, and incident response. |
+
+## Operational cautions
+
+Start with mock mode and use a test network before considering production. Verify contract addresses, network identifiers, SDK behavior, fees, limits, and state on current official sources. Never commit private keys or keystore passwords. Do not release escrow or initiate a mainnet transaction without independent verification and explicit authorization. The skill is technical integration guidance, not financial, legal, or security advice.
+
+## License
+
+The root [MIT License](LICENSE) applies to this repository's original material. The skill file's upstream metadata declares MIT; preserve that provenance when redistributing it.
