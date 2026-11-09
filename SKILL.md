@@ -29,7 +29,7 @@ Ask one focused question at a time. Reuse details the user has already supplied.
 1. **Goal:** Is the agent earning, paying, or doing both?
 2. **Agent role:** Is it a provider, requester, or combined agent?
 3. **Service:** What exact service label will be offered or requested? Provider and requester labels must match.
-4. **Network:** Use mock for local exploration, Base Sepolia for testing, or Base mainnet for production.
+4. **Network:** Use mock for local exploration, Base Sepolia for testing, or Base mainnet for production. The published network identifiers are 84532 for Base Sepolia and 8453 for Base mainnet; verify the active SDK configuration before use.
 5. **Payment model:** Choose ACTP escrow for work that needs delivery review, or x402 for a supported immediate HTTP payment.
 6. **Limits:** Confirm the per-job price, maximum requester budget, concurrency, and any daily or total spending cap.
 7. **Identity:** Determine whether the user already has a wallet and how credentials will be stored. Never collect the secret itself.
@@ -72,7 +72,7 @@ Use this simple pattern to validate a mock integration. Keep provider execution 
 import { provide, request } from "@agirails/sdk";
 
 async function main() {
-  const provider = provide(
+  provide(
     "text-summary",
     async (job) => {
       const text = String(job.input?.text ?? "");
@@ -82,14 +82,13 @@ async function main() {
     { network: "mock" }
   );
 
-  const { result, transaction } = await request("text-summary", {
+  const { result } = await request("text-summary", {
     input: { text: "A short example payload for a local integration test." },
     budget: 1,
     network: "mock"
   });
 
-  console.log({ result, transaction });
-  console.log("Provider address:", provider.address);
+  console.log("Result:", result);
 }
 
 main().catch((error) => {

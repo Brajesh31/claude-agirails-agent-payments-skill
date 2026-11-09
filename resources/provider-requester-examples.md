@@ -7,7 +7,7 @@ These examples demonstrate the simple SDK flow in mock mode. Confirm the install
 ~~~ts
 import { provide } from "@agirails/sdk";
 
-const provider = provide(
+provide(
   "text-check",
   async (job) => {
     const text = String(job.input?.text ?? "").trim();
@@ -21,7 +21,7 @@ const provider = provide(
   { network: "mock" }
 );
 
-console.log("Provider address:", provider.address);
+console.log("Provider handler registered in mock mode.");
 ~~~
 
 ## TypeScript requester
@@ -30,14 +30,13 @@ console.log("Provider address:", provider.address);
 import { request } from "@agirails/sdk";
 
 async function main() {
-  const { result, transaction } = await request("text-check", {
+  const { result } = await request("text-check", {
     input: { text: "Check this sample." },
     budget: 1,
     network: "mock"
   });
 
   console.log("Result:", result);
-  console.log("Transaction:", transaction);
 }
 
 main().catch((error) => {
