@@ -1,38 +1,48 @@
 # Wallet and Secret Handling Runbook
 
-## Before setup
-1. Decide whether a wallet is actually required for the chosen flow.
-2. Begin in mock mode wherever possible.
-3. Use a dedicated wallet for testnet and production activities.
-4. Confirm the official SDK instructions and supported environment variables.
+## Setup
 
-## Secret storage
-- Store private keys, keystore passwords, and API credentials in a secrets manager or protected runtime environment.
-- Never place real values in SKILL.md, README files, examples, source code, issue comments, or logs.
-- Keep .env, keystore files, and exported secret material out of version control.
-- Restrict access to the smallest set of people and workloads.
-- Do not print environment variables to debug a configuration issue.
+1. Determine whether the selected workflow needs a wallet.
+2. Use mock mode when exploring the integration.
+3. Use separate wallets for test and production work.
+4. Record the active network and wallet owner.
+5. Follow the installed SDK's supported credential configuration.
 
-## Runtime controls
-- Validate network, chain ID, token address, recipient, and amount before signing.
-- Apply spending and transaction limits.
-- Require explicit human approval for mainnet, high-value, or irreversible actions.
-- Use dedicated test and production configurations.
-- Alert on unexpected signing requests, state changes, or repeated failures.
+## Credential storage
 
-## Rotation and incident response
-1. Disable or revoke the affected credential where possible.
-2. Rotate the key through the approved wallet process.
-3. Review recent transactions and access logs.
-4. Assess whether funds or other accounts are at risk.
-5. Notify the appropriate security owner.
-6. Record the incident and update controls.
+- Keep private keys, recovery phrases, keystore passwords, and API credentials in a secrets manager or protected runtime environment.
+- Never place real credentials in skill files, documentation, examples, tickets, logs, or screenshots.
+- Exclude environment files and wallet stores from version control.
+- Limit secret access to the smallest number of services and operators.
+- Do not print environment variables to diagnose a configuration problem.
+- Rotate credentials when an operator leaves or exposure is suspected.
 
-## Release check
-- [ ] No secrets are present in the repository.
-- [ ] Runtime permissions are least-privilege.
-- [ ] Network and recipient validation is implemented.
-- [ ] Recovery and rotation steps are documented.
-- [ ] Production release has a named approver.
+## Transaction controls
 
-Do not paste real secret values into this runbook.
+- Verify chain, token, recipient, amount, and fee before signing.
+- Use a separate signer identity for each environment.
+- Restrict the agent's spend and transaction permissions.
+- Require a human approval step for mainnet and high-value transfers.
+- Keep signing events and transaction identifiers in an auditable log.
+- Alert on unexpected signing requests and repeated payment failures.
+
+## Incident response
+
+1. Pause the affected agent or signing workload.
+2. Revoke or disable exposed credentials where possible.
+3. Rotate the affected key through the approved wallet process.
+4. Review recent transactions and access records.
+5. Determine whether assets or connected accounts may be affected.
+6. Notify the responsible security operator.
+7. Record the incident and improve the control that failed.
+
+## Release review
+
+- [ ] No real credentials are present in the repository.
+- [ ] Signing permissions are least-privilege.
+- [ ] Spend limits are active.
+- [ ] Network and recipient checks are enforced.
+- [ ] Rotation and recovery owners are named.
+- [ ] Production use has explicit approval.
+
+Never paste a real secret into this document.

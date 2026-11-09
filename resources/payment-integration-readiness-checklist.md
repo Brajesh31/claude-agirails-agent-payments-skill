@@ -1,43 +1,56 @@
-# Agent Payment Integration Readiness Checklist
+# Payment Integration Readiness Checklist
 
-Use this before enabling an AGIRAILS payment flow. Start with mock mode, then a test network. This checklist is not financial, legal, or security advice.
+Complete this review before enabling an AGIRAILS payment workflow. Use mock mode first, then a test network.
 
-## Use case and roles
-- [ ] Provider, requester, or both roles are defined.
-- [ ] Service names match exactly on both sides.
-- [ ] Pricing, budget, currency, and settlement expectations are documented.
-- [ ] ACTP escrow versus x402 instant payment has been selected for a reason.
-- [ ] The user understands that x402 is not an escrow or dispute-protected flow.
+## Use case
+
+- [ ] Provider, requester, or combined role is defined.
+- [ ] Service labels are identical on both sides.
+- [ ] Input and output schemas are documented.
+- [ ] Pricing, budget, token, and currency units are explicit.
+- [ ] ACTP escrow or x402 immediate settlement is selected for a clear reason.
+- [ ] The team understands the protection and dispute limits of the selected flow.
 
 ## Environment and identity
-- [ ] SDK and CLI versions are recorded.
-- [ ] Mock/testnet/mainnet mode is explicit.
-- [ ] Chain/network identifiers are verified from current official documentation.
-- [ ] Wallet ownership and required permissions are confirmed.
-- [ ] Private keys and passwords are stored outside source control.
-- [ ] .env, keystore, and secret files are ignored by Git.
-- [ ] No secret values appear in logs, screenshots, or committed examples.
 
-## Transaction safety
-- [ ] Recipient address is independently checked.
-- [ ] Amount, token, decimals, network, and fee are validated before signing.
-- [ ] Duplicate requests and retries are idempotent or safely detected.
-- [ ] Transaction IDs and state transitions are recorded.
-- [ ] Escrow release is performed only after delivery is verified.
-- [ ] Cancellation and dispute paths are understood.
-- [ ] Mainnet operations require explicit human approval.
+- [ ] SDK and CLI versions are recorded.
+- [ ] Network is explicitly configured.
+- [ ] Base Sepolia is selected for testnet work.
+- [ ] Base mainnet is selected only for approved production use.
+- [ ] Wallet ownership and signing permissions are confirmed.
+- [ ] Credentials are stored outside the repository.
+- [ ] Local keystores and environment files are excluded from version control.
+- [ ] Logs and diagnostics contain no private credentials.
+
+## Transaction controls
+
+- [ ] Recipient and network are checked before signing.
+- [ ] Amount, token decimals, and fee estimate are validated.
+- [ ] Duplicate submissions are detected.
+- [ ] Retries check transaction status before submitting again.
+- [ ] Spending caps are configured.
+- [ ] Escrow delivery and dispute handling are understood.
+- [ ] Irreversible actions require a named approver.
 
 ## Test plan
-- [ ] Run end-to-end tests in mock mode.
-- [ ] Test invalid recipient, insufficient funds, timeout, and duplicate request cases.
-- [ ] Verify actual on-chain state independently on testnet.
-- [ ] Confirm recovery steps before production.
-- [ ] Review current contract, SDK, and network documentation before relying on any address or limit.
 
-## Go-live decision
-- Owner:
+- [ ] Mock success path passes.
+- [ ] Invalid payload is rejected.
+- [ ] Missing service handler is handled.
+- [ ] Insufficient balance is handled.
+- [ ] Timeout and retry behavior is tested.
+- [ ] Duplicate request does not create an unintended second payment.
+- [ ] Cancellation and dispute paths are tested where applicable.
+- [ ] Testnet transaction and final state are independently checked.
+
+## Production decision
+
+- Responsible owner:
 - Reviewer:
-- Environment:
-- Approved amount and limits:
-- Outstanding risks:
-- Explicit approval reference:
+- Network:
+- Maximum transaction amount:
+- Aggregate spending limit:
+- Monitoring and pause procedure:
+- Known gaps:
+- Approval reference:
+- Decision: Approved / Limited test / Blocked

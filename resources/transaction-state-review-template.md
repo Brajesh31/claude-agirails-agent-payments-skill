@@ -1,42 +1,48 @@
 # Transaction State Review
 
-Use this record to review a transaction. Do not use this template to trigger a payment or release funds.
+Use this template to inspect a transaction. Completing this record does not authorize a payment, cancellation, or release.
 
-## Transaction identity
+## Transaction details
+
 - Internal reference:
 - Protocol transaction ID:
 - Network:
 - Requester:
 - Provider:
-- Service name:
+- Service:
 - Amount and token:
-- Created at:
+- Created time:
 
 ## State history
-| Timestamp | Previous state | New state | Evidence / transaction hash | Reviewed by |
+
+| Time | Previous state | New state | Transaction hash or evidence | Reviewer |
 |---|---|---|---|---|
 | | | | | |
 
-## Delivery review
-- Expected deliverable:
-- Delivered artifact or evidence:
-- Acceptance criteria:
-- Discrepancies:
-- Dispute window and deadline (verified from current source):
-- Delivery accepted? Yes / No / Pending
+## Delivery assessment
 
-## Settlement review
-- Current state independently verified:
-- Escrow release required?:
-- Release authorization owner:
-- Release transaction hash:
-- Final recipient and amount verified:
+- Expected deliverable:
+- Delivered result:
+- Acceptance criteria:
+- Gaps or defects:
+- Applicable review deadline:
+- Decision: Accepted / Rejected / Pending
+
+## Settlement assessment
+
+- Current state checked independently:
+- Escrow involved:
+- Settlement action required:
+- Authorized operator:
+- Settlement transaction hash:
+- Final recipient and amount:
 - Dispute or cancellation notes:
 
 ## Review outcome
+
 - Status: In progress / Delivered / Disputed / Settled / Cancelled
 - Follow-up action:
 - Responsible owner:
 - Review date:
 
-**Control:** Never infer that funds are settled from a UI message alone. Verify the transaction on the correct network and require approval before any irreversible action.
+**Control:** Never infer settlement from a success message alone. Verify the final state on the correct network. Require separate approval before an irreversible action.

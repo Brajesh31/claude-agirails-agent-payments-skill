@@ -1,111 +1,58 @@
 # claude-agirails-agent-payments-skill
 
-A Claude Code skill for integrating AI agents with payment workflows using escrow, instant payment, and settlement patterns.
+A Claude Code skill for building safe payment workflows between AI agents using AGIRAILS.
 
-## Overview
+## What it helps with
 
-This skill guides agent payment onboarding and integration. It covers provider and requester roles, payment routing, escrow lifecycle, instant payment flows, pricing, disputes, and identity configuration.
+- Provider agents that offer paid services.
+- Requester agents that purchase services.
+- Combined agents that both provide and request work.
+- ACTP escrow workflows for deliverables that need review.
+- x402 payment flows for supported immediate HTTP interactions.
+- Wallet configuration, network selection, transaction review, and operational safety.
 
-Payment integrations require careful handling of credentials, state transitions, and irreversible operations. Follow the onboarding workflow and verify each step before enabling live transactions.
+## Install
 
-## Main Capabilities
-
-- Onboard an agent to the payment workflow.
-- Select provider or requester behavior.
-- Configure payment adapters and routing.
-- Work with escrow-based payment flows.
-- Work with instant payment flows where supported.
-- Understand settlement on the configured network.
-- Manage pricing and payment metadata.
-- Handle dispute and release workflows.
-- Configure agent identity and key management.
-- Verify setup before enabling real payments.
-
-## Payment Workflow Concepts
-
-### Provider
-
-An agent that offers a service and receives payment after the required conditions are satisfied.
-
-### Requester
-
-An agent that requests a service and initiates payment according to the configured flow.
-
-### Escrow
-
-A payment state that holds funds until the agreed release conditions are met. State transitions and release operations must be handled carefully.
-
-### Instant Payment
-
-A direct payment flow for cases where escrow is not required and the supported payment protocol allows immediate settlement.
-
-## Installation
-
-The skill can be installed in the Claude Code skills directory:
-
-```bash
+~~~bash
 git clone https://github.com/Brajesh31/claude-agirails-agent-payments-skill.git ~/.claude/skills/agirails-agent-payments
-```
+~~~
 
-The payment SDK and network configuration are separate runtime requirements. Review the current onboarding instructions in `SKILL.md` before installing packages or configuring keys.
+Restart Claude Code if the skill directory was created while the session was already running.
 
-## Usage
+## Use
 
-Invoke the skill when integrating an agent with the payment system:
+Invoke:
 
-```text
+~~~text
 /agirails-agent-payments
-```
+~~~
 
-Provide the agent role, service or task description, pricing model, payment preference, settlement environment, and required identity configuration.
+Describe the agent's role, service, target network, payment model, amount limits, and runtime environment. The skill will clarify missing details before proposing an implementation.
 
-## Onboarding Workflow
+## Recommended workflow
 
-1. Clarify the agent's role and payment use case.
-2. Select the appropriate payment flow.
-3. Define service pricing and settlement requirements.
-4. Configure identity and credentials securely.
-5. Generate integration code for the selected role.
-6. Review state transitions and error handling.
-7. Test using a safe non-production environment.
-8. Verify payment status and settlement behavior.
-9. Enable live use only after explicit confirmation.
-10. Monitor transactions and handle disputes through the documented process.
+1. Design and test in mock mode.
+2. Validate the service contract and error handling.
+3. Test on Base Sepolia with a dedicated test wallet.
+4. Verify balances, transaction states, recipient, and settlement.
+5. Require explicit approval before moving to Base mainnet.
 
-## Security Checklist
+Never share private keys or seed phrases in chat. Mainnet payments and escrow releases are consequential operations and require independent verification.
 
-- Private keys are never committed.
-- Credentials are stored securely.
-- Payment amounts and recipients are validated.
-- Escrow state transitions are checked.
-- Release operations require the correct conditions.
-- Duplicate requests are handled safely.
-- Network and chain configuration are verified.
-- Transaction status is independently checked.
-- Test and production environments are separated.
-
-## Repository Contents
-
-- `SKILL.md`: Main onboarding and payment integration instructions.
-- `README.md`: Payment concepts, workflow, and security checklist.
-
-## Important Note
-
-This skill provides technical integration guidance, not financial or legal advice. Payment operations can be irreversible. Verify network details, transaction state, and permissions before moving real funds.
-
-
-## Supporting Resources
+## Supporting materials
 
 | File | Purpose |
 |---|---|
-| [Payment integration readiness checklist](resources/payment-integration-readiness-checklist.md) | Review roles, environment, secrets, transaction safety, testing, and go-live approval. |
-| [Transaction state review template](resources/transaction-state-review-template.md) | Record lifecycle evidence and review delivery/settlement without triggering payments. |
-| [Wallet and secret handling runbook](resources/wallet-and-secret-handling-runbook.md) | Handle key storage, access control, rotation, and incident response. |
+| [Payment integration readiness checklist](resources/payment-integration-readiness-checklist.md) | Review roles, network, wallet, spending controls, and launch approval. |
+| [Transaction state review template](resources/transaction-state-review-template.md) | Record transaction history, delivery evidence, dispute status, and settlement verification. |
+| [Wallet and secret handling runbook](resources/wallet-and-secret-handling-runbook.md) | Store, restrict, rotate, and respond to credential exposure. |
+| [Provider and requester examples](resources/provider-requester-examples.md) | Starter patterns for both sides of a service transaction. |
+| [Payment failure recovery playbook](resources/payment-failure-recovery-playbook.md) | Classify failed or uncertain operations and recover without duplicate payments. |
 
-## Operational cautions
+## Scope
 
-Start with mock mode and use a test network before considering production. Verify contract addresses, network identifiers, SDK behavior, fees, limits, and state on current official sources. Never commit private keys or keystore passwords. Do not release escrow or initiate a mainnet transaction without independent verification and explicit authorization. The skill is technical integration guidance, not financial, legal, or security advice.
+The skill provides engineering workflow guidance. It does not replace security review, financial controls, or review of the active network and protocol configuration.
 
 ## License
 
-The root [MIT License](LICENSE) applies to this repository's original material. The skill file's upstream metadata declares MIT; preserve that provenance when redistributing it.
+MIT. See the root [LICENSE](LICENSE).
